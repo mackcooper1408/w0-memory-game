@@ -9,6 +9,8 @@ const COLORS = [
 ];
 
 const colors = shuffle(COLORS);
+let c1;
+let c2;
 
 createCards(colors);
 
@@ -43,23 +45,53 @@ function createCards(colors) {
 
   for (let color of colors) {
     // missing code here ...
+    let card = document.createElement("div");
+
+    card.setAttribute("class", color);
+    card.addEventListener("click", handleCardClick); 
+    document.getElementById("game").appendChild(card)
   }
 }
 
 /** Flip a card face-up. */
+let counter = 0;
 
 function flipCard(card) {
   // ... you need to write this ...
+  
+  if (!card.classList.contains("checked") && counter < 2) {
+    if (!card.getAttribute("class") === c1) {
+      card.style.backgroundColor = card.getAttribute("class");
+      c1 = card.getAttribute("class");
+    }
+    else {
+      card.style.backgroundColor = card.getAttribute("class");
+    }
+    
+    // make sure there's only two cards
+    card.classList.add("checked");
+    counter++;
+  }
+  else if (){
+    setTimeout(() => unFlipCard(evt.target), 1000);
+    counter = 0;
+  }
+
+
 }
 
 /** Flip a card face-down. */
 
 function unFlipCard(card) {
-  // ... you need to write this ...
+  // unflip after a set amount of time
+  card.classList.remove("checked");
+  card.style.backgroundColor = "#fff";
+  console.log("WORKING");
 }
 
 /** Handle clicking on a card: this could be first-card or second-card. */
 
 function handleCardClick(evt) {
-  // ... you need to write this ...
+  // flip card, wait a few seconds, then unflip
+  flipCard(evt.target);
 }
