@@ -10,7 +10,7 @@ const COLORS = [
 
 const colors = shuffle(COLORS);
 let c1;
-let c2;
+let c1Color;
 
 createCards(colors);
 
@@ -59,25 +59,35 @@ let counter = 0;
 function flipCard(card) {
   // ... you need to write this ...
   
-  if (!card.classList.contains("checked") && counter < 2) {
-    if (!card.getAttribute("class") === c1) {
+  if (counter < 2) {
+    if(card !== c1  && card.getAttribute("class")!== c1Color) {
       card.style.backgroundColor = card.getAttribute("class");
-      c1 = card.getAttribute("class");
-    }
-    else {
-      card.style.backgroundColor = card.getAttribute("class");
-    }
-    
-    // make sure there's only two cards
-    card.classList.add("checked");
+      c1 = card;
+      c1Color = card.getAttribute("class");
+      // c1.getAttribute("class");
+      // c1.classList.add("checked")
+      // card.classList.add("checked");
+      counter++;
+      console.log(c1Color);
+    } 
     counter++;
   }
-  else if (){
-    setTimeout(() => unFlipCard(evt.target), 1000);
+
+  else if (card !== c1  && card.getAttribute("class") !== c1Color) {
+    setTimeout(function() {unFlipCard(card); unFlipCard(c1)}, 1000);
+    card.style.backgroundColor = card.getAttribute("class");
     counter = 0;
+    console.log("card: ", card.getAttribute("class"), "c1: ", c1Color);
+    console.log("NO-MATCH");
   }
 
-
+  else if (card !== c1 && card.getAttribute("class") === c1Color) {
+    card.style.backgroundColor = card.getAttribute("class");
+    card.removeEventListener("click", handleCardClick);
+    c1.removeEventListener("click", handleCardClick);
+    counter = 0;
+    console.log("MATCH");
+  }
 }
 
 /** Flip a card face-down. */
@@ -93,5 +103,19 @@ function unFlipCard(card) {
 
 function handleCardClick(evt) {
   // flip card, wait a few seconds, then unflip
+  console.log("counter: ", counter, "clicked!");
   flipCard(evt.target);
 }
+
+
+                // if (card.getAttribute("class") !== c1) {
+                //   card.style.backgroundColor = card.getAttribute("class");
+                //   c1 = card.getAttribute("class");
+                //   console.log("P2")
+                // }
+                // else {
+                //   card.style.backgroundColor = card.getAttribute("class");
+                // }
+
+                // make sure there's only two cards
+                // card.classList.add("checked");
