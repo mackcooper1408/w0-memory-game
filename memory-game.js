@@ -2,6 +2,15 @@
 
 /** Memory game: find matching pairs of cards and flip both of them. */
 
+let startDiv = document.createElement("div");
+
+startDiv.setAttribute("class", color);
+card.addEventListener("click", handleCardClick); 
+document.getElementById("game").appendChild(card)
+
+
+function init() {
+
 const FOUND_MATCH_WAIT_MSECS = 1000;
 const COLORS = [
   "red", "blue", "green", "orange", "purple",
@@ -113,4 +122,5 @@ function handleCardClick(evt) {
   else {
     counter--;
   }
+}
 }
