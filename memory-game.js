@@ -64,13 +64,8 @@ function flipCard(card) {
       card.style.backgroundColor = card.getAttribute("class");
       c1 = card;
       c1Color = card.getAttribute("class");
-      // c1.getAttribute("class");
-      // c1.classList.add("checked")
-      // card.classList.add("checked");
-      //counter++;
       console.log(c1Color);
     } 
-    //counter++;
   }
 
   else if (card !== c1  && card.getAttribute("class") !== c1Color) {
@@ -110,22 +105,12 @@ function unFlipCard(card) {
 
 function handleCardClick(evt) {
   // flip card only if there are less than 2 cards already flipped
-  counter++;
-  if (counter <= 2) {
+    counter++;
     console.log("clicked!", "counter: ", counter);
+  if (counter <= 2 && evt.target !== c1) {
     flipCard(evt.target);
   }
+  else {
+    counter--;
+  }
 }
-
-
-                // if (card.getAttribute("class") !== c1) {
-                //   card.style.backgroundColor = card.getAttribute("class");
-                //   c1 = card.getAttribute("class");
-                //   console.log("P2")
-                // }
-                // else {
-                //   card.style.backgroundColor = card.getAttribute("class");
-                // }
-
-                // make sure there's only two cards
-                // card.classList.add("checked");
