@@ -67,44 +67,54 @@ function flipCard(card) {
       // c1.getAttribute("class");
       // c1.classList.add("checked")
       // card.classList.add("checked");
-      counter++;
+      //counter++;
       console.log(c1Color);
     } 
-    counter++;
+    //counter++;
   }
 
   else if (card !== c1  && card.getAttribute("class") !== c1Color) {
-    setTimeout(function() {unFlipCard(card); unFlipCard(c1)}, 1000);
+    setTimeout(function() {unFlipCard(c1); unFlipCard(card)}, 1000);
     card.style.backgroundColor = card.getAttribute("class");
-    counter = 0;
     console.log("card: ", card.getAttribute("class"), "c1: ", c1Color);
     console.log("NO-MATCH");
   }
-
+  
   else if (card !== c1 && card.getAttribute("class") === c1Color) {
     card.style.backgroundColor = card.getAttribute("class");
     card.removeEventListener("click", handleCardClick);
     c1.removeEventListener("click", handleCardClick);
+    c1Color = "";
+    c1 = "";
     counter = 0;
     console.log("MATCH");
   }
+  // else {
+  //   counter = 0;
+  // }
+  console.log("c1Color: ", c1Color, "c1: ", c1, "c2Color: ", card.getAttribute("class"));
 }
 
 /** Flip a card face-down. */
 
 function unFlipCard(card) {
   // unflip after a set amount of time
-  card.classList.remove("checked");
   card.style.backgroundColor = "#fff";
+  counter = 0;
+  c1Color = "";
+  c1 = "";
   console.log("WORKING");
 }
 
 /** Handle clicking on a card: this could be first-card or second-card. */
 
 function handleCardClick(evt) {
-  // flip card, wait a few seconds, then unflip
-  console.log("counter: ", counter, "clicked!");
-  flipCard(evt.target);
+  // flip card only if there are less than 2 cards already flipped
+  counter++;
+  if (counter <= 2) {
+    console.log("clicked!", "counter: ", counter);
+    flipCard(evt.target);
+  }
 }
 
 
