@@ -1,4 +1,12 @@
-/* you can add to or change this. */
+body {
+  background-color: whitesmoke;
+}
+
+h1 {
+  text-align: center;
+  font-family: impact;
+  order: 0;
+}
 
 #game div {
   border: 1px solid black;
@@ -6,12 +14,51 @@
   height: 100px;
   margin: 20px;
   display: inline-block;
+  order: 3;
 }
 
-#game {
-
+#start,
+#restart {
+  width: 200px;
+  height:100px;
+  size: 300px;
+  border:black;
+  border-color: black;
+  border-width: 20px;
+  border-radius: 50px;
+  display: inline-block;
+  color: rgb(110, 58, 58);
+  background: bisque;
+  font-family: impact;
+  font-size: 30px;
+  order: 2;
 }
 
-h1 {
-  text-align: center;
+/* ANIMATION */
+.sbutton {
+  transition: background-color .5s, color .5s linear, border-radius 2s ease-out;
+}
+
+/* ANIMATION */
+.sbutton:hover {
+  animation: shapeshift 6s infinite;
+  color: black;
+  border-radius: 50px;
+}
+
+/* ANIMATION */
+@keyframes shapeshift {
+    0%, 100% {
+        transform: translate(0,0);  
+        border-radius: 100px;
+        background-color: black;
+        color: whitesmoke;
+    }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
