@@ -69,12 +69,12 @@ function init() {
 
             card.setAttribute("class", color);
             card.addEventListener("click", handleCardClick);
-            document.getElementById("game").appendChild(card)
+            gameBoard.append(card);
         }
     }
     // count how many cards
     let counter = 0;
-    let tileCount = 0;
+    let numMatchesFound = 0;
 
     /** Flip a card face-up. */
 
@@ -112,11 +112,11 @@ function init() {
             counter = 0;
 
             // count how many matches have been complete
-            tileCount ++;
+            numMatchesFound += 2;
             console.log("MATCH");
 
             // restart when last match completed
-            if (tileCount === 5) {
+            if (numMatchesFound === colors.length) {
                 alert("You Win!")
                 restart();
             }

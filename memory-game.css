@@ -14,7 +14,7 @@ h1 {
   height: 100px;
   margin: 20px;
   display: inline-block;
-  order: 3;
+  border-radius: 10px;
 }
 
 #start,
